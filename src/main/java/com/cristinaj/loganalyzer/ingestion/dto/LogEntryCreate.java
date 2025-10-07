@@ -1,4 +1,4 @@
-package com.cristinaj.loganalyzer;
+package com.cristinaj.loganalyzer.ingestion.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

@@ -1,4 +1,4 @@
-package com.cristinaj.loganalyzer;
+package com.cristinaj.loganalyzer.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -12,7 +12,7 @@ import java.time.Instant;
 @Setter
 @NoArgsConstructor
 @Table(name = "log_entry")
-public class LogEntryEntity {
+public class LogEntry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

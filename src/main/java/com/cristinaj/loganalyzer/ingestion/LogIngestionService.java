@@ -1,5 +1,10 @@
-package com.cristinaj.loganalyzer;
+package com.cristinaj.loganalyzer.ingestion;
 
+import com.cristinaj.loganalyzer.domain.LogEntry;
+import com.cristinaj.loganalyzer.domain.LogEntryRepository;
+import com.cristinaj.loganalyzer.domain.LogLevel;
+import com.cristinaj.loganalyzer.ingestion.dto.IngestionResult;
+import com.cristinaj.loganalyzer.ingestion.dto.LogEntryCreate;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -20,7 +25,7 @@ public class LogIngestionService {
     public IngestionResult ingest(List<LogEntryCreate> batch) {
         if (batch == null || batch.isEmpty()) throw new IllegalArgumentException("No log entry to ingest.");
 
-        List<LogEntryEntity> validEntities = new ArrayList<>();
+        List<LogEntry> validEntities = new ArrayList<>();
         IngestionResult result = new IngestionResult();
 
         for (LogEntryCreate log:batch) {
@@ -31,7 +36,7 @@ public class LogIngestionService {
                 // enum mapping: case-insensitive
                 LogLevel level = LogLevel.valueOf(log.getLevel().toUpperCase(Locale.ROOT));
 
-                LogEntryEntity logEntry = new LogEntryEntity();
+                LogEntry logEntry = new LogEntry();
                 logEntry.setTsUtc(ts);
                 logEntry.setLevel(level);
                 logEntry.setMessage(log.getMessage());

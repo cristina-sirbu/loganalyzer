@@ -1,4 +1,4 @@
-package com.cristinaj.loganalyzer;
+package com.cristinaj.loganalyzer.ingestion.dto;
 
 import lombok.Getter;
 import lombok.Setter;
