@@ -37,12 +37,12 @@ Notes:
 
 ### Running locally (Dev profile)
 
-To run the application:
+Run the application locally:
 ```shell
 mvn spring-boot:run -Dspring-boot.run.profiles=dev
 ```
 
-To test the application:
+Test the application:
 ```shell
 curl -X POST http://localhost:8080/logs \
   -H "Content-Type: application/json" \
@@ -52,18 +52,18 @@ It should return ``{"saved":1,"failed":0}``.
 
 ### Docker (locally)
 
-To build the image run:
+Build the image:
 ```shell
 docker build -t log-analyzer:local .
 ```
 
-To run the image:
+Run the image:
 ```shell
 mkdir -p data
 docker run --rm -p 8080:8080 -v "$(pwd)/data:/data" -e SPRING_PROFILES_ACTIVE=docker --name log-analyzer log-analyzer:local
 ```
 
-To test the application:
+Test the application:
 ```shell
 curl -X POST http://localhost:8080/logs \
   -H "Content-Type: application/json" \
@@ -104,4 +104,31 @@ docker pull ghcr.io/cristina-sirbu/loganalyzer:latest
 docker run --rm -p 8080:8080 -v "$(pwd)/data:/data" \
   -e SPRING_PROFILES_ACTIVE=docker \
   ghcr.io/cristina-sirbu/loganalyzer:latest
+```
+
+### Helm
+
+**Prerequisites**:
+* A Kubernetes cluster. (I used Minikube for testing)
+* Helm installed.
+
+Create a namespace.
+```shell
+kubectl create ns log-analyzer
+```
+
+Deploy helm chart.
+```shell
+helm install log-analyzer ./helm/log-analyzer -n log-analyzer
+```
+
+Check deployment.
+```shell
+kubectl get deploy,po,svc -n log-analyzer
+```
+
+Check application by port-forwarding.
+```shell
+kubectl port-forward svc/log-analyzer 8080:8080 -n log-analyzer
+curl -s http://localhost:8080/logs
 ```
