@@ -1,4 +1,4 @@
-package com.cristinaj.loganalyzer;
+package com.cristinaj.loganalyzer.analysis;
 
 import lombok.*;
 

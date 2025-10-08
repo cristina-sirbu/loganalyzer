@@ -1,5 +1,7 @@
-package com.cristinaj.loganalyzer;
+package com.cristinaj.loganalyzer.ingestion;
 
+import com.cristinaj.loganalyzer.ingestion.dto.IngestionResult;
+import com.cristinaj.loganalyzer.ingestion.dto.LogEntryCreate;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

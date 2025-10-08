@@ -1,4 +1,4 @@
-package com.cristinaj.loganalyzer;
+package com.cristinaj.loganalyzer.web;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
