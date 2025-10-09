@@ -34,6 +34,7 @@ Notes:
 * Timestamps are stored in UTC (Instant).
 * `meta_json` holds optional fields, e.g. {"orderId":123,"durationMs":520}.
 
+---
 ## Running instructions
 
 ### Running locally (Dev profile)
@@ -133,3 +134,20 @@ Check application by port-forwarding.
 kubectl port-forward svc/log-analyzer 8080:8080 -n log-analyzer
 curl -s http://localhost:8080/logs
 ```
+
+---
+## Potential improvements
+
+* Moving from H2 to Postgresql or another DB.
+* Splitting into two services for clear separation of concerns and possibility to scale independently:
+  * Log Ingestion Service: for write path.
+  * Log Analysis Service: for read path.
+* Improving the filtering API by:
+  * allowing to search in all messages based on a word.
+  * allowing to filter based on source.
+* If traffic grows:
+  * indexes on (timestamp) or (level, timestamp) could help.
+  * implementing HPA (Horizontal Pod Autoscaling) in the Helm chart could help.
+* Improving the coverage of unit tests and integration tests.
+* If helm chart deployed on a non-local Kubernetes cluster, an Ingress may be required to be added.
+* Adding to the GitHub Workflow a step to push the Helm chart on release.
