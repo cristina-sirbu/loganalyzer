@@ -1,7 +1,5 @@
 # Log Analyzer
 
-Work in progress...
-
 Log Analyzer is a simple microservice for log ingestion and analysis.
 
 ---
