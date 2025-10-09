@@ -8,6 +8,7 @@ Log Analyzer is a simple microservice for log ingestion and analysis.
 ## Features
 
 * Ingest logs `POST /logs`
+* Upload and ingest files with logs `POST /logs/upload`
 * Query logs `GET /logs`
 * Filtering by level and time range `GET /logs?level=ERROR&from=...&to=...`
 * Persists logs in a H2 file DB
